@@ -41,4 +41,16 @@ describe("server", () => {
         });
     });
   });
+
+  describe("POST /", () => {
+    it("should return 201 CREATED", () => {
+      // we return the promise
+      return request(server)
+        .post("/hobbits")
+        .send({ name: "posthobbit" })
+        .then(res => {
+          expect(res.status).toBe(201);
+        });
+    });
+  });
 });

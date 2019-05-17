@@ -27,4 +27,17 @@ describe("hobbits", () => {
       expect(hobbits).toHaveLength(2);
     });
   });
+  describe("delete", () => {
+    it("should delete hobbit", async () => {
+      const newHobbit = await Hobbits.insert({ name: "deletie" });
+
+      await Hobbits.insert({ name: "hobbit1" });
+      await Hobbits.insert({ name: "hobbit2" });
+
+      await Hobbits.remove(newHobbit.id);
+
+      const hobbitList = await Hobbits.getAll();
+      expect(hobbitList).toHaveLength(2);
+    });
+  });
 });
